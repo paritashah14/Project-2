@@ -2,6 +2,7 @@
 // =============================================================
 const app = require('express');
 const PORT = process.env.PORT || 8080;
+const sequelize = require('sequelize');
 
 // Requiring our models for syncing
 const db = require("./models");
