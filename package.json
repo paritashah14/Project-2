@@ -18,11 +18,13 @@
   },
   "homepage": "https://github.com/ead139/Project-2#readme",
   "dependencies": {
-    "body-parser": "*",
-    "express": "*",
+    "apiai": "^4.0.3",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
     "express-handlebars": "*",
     "method-override": "*",
     "mysql": "*",
+    "path": "^0.12.7",
     "sequelize": "*"
   }
 }
