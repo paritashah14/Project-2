@@ -1,72 +1,89 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Codi</title>
     <!--Reset css link-->
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
   <!--bootstrap-->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
-
 <body>
+  <div class="logo">
+    Codi
+  </div>
+  <div id="main">
+  </div>
+<script id="tpl" type="text/html">
 <div class="container">
    <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <div class="panel panel-login">
+      <div class="{{loginStatus && !settingsMode ? '' : 'hide'}}">
+        <div>
+          <p>
+            {{response}}
+          </p>
+        </div>
+        <input class="fullWidth" type="text" value="{{ask}}" placeholder="Ask the bot some questions." />
+        <button on-click="sendBot" class="btn">Submit</button>
+        <button on-click="settings" class="btn">Settings</button>
+        <button on-click="logout" class="btn">Logout</button>
+      </div>
+      <div class="{{loginStatus && settingsMode ? '' : 'hide'}}">
+        <label>Email</label>
+        <input class="fullWidth" type="text" value="{{user.email}}" placeholder="Email" />
+        <label>Password</label>
+        <input class="fullWidth" type="password" value="{{user.password}}" placeholder="Password" />
+        <button on-click="updateSettings" class="btn">Save</button>
+        <button on-click="settings" class="btn">Close</button>
+        <button on-click="rip" class="btn">Delete Account</button>
+      </div>
+      <div class="panel panel-login {{loginStatus ? 'hide' : ''}}">
         <div class="panel-body">
           <div class="row">
             <div class="col-lg-12">
-              <form id="login-form" action="/login" method="POST" role="form" style="display: block;">
+              <div>
+                {{errors}}
+              </div>
+              <div class="{{loginMode ? '' : 'hide'}}">
                 <h2>LOGIN</h2>
-                  <div class="form-group">
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" id="signInPassword" tabindex="2" class="form-control" placeholder="Password">
-                  </div>
-                  <div class="col-xs-6 form-group pull-left checkbox">
-                    <input id="checkbox1" type="checkbox" name="remember">
-                    <label for="checkbox1">Remember Me</label>
-                  </div>
-                  <div class="col-xs-6 form-group pull-right">
-                        <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
-                  </div>
-              </form>
-              <form id="register-form"role="form" style="display: none;">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="text" tabindex="1" class="form-control" placeholder="Email" value="{{login.email}}">
+                  <label>Password</label>
+                  <input type="password" tabindex="2" class="form-control" placeholder="Password" value="{{login.password}}">
+                </div>
+                <div class="col-xs-6 form-group pull-right">
+                  <button tabindex="4" class="form-control btn" on-click="login">Login</button>
+                </div>
+              </div>
+              <div class="{{registerMode ? '' : 'hide'}}">
                 <h2>REGISTER</h2>
-                  <div class="form-group" id="username"
-                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
-                  </div>
-                  <div class="col-xs-6 form-group pull-right">
-                        <input type="submit"  id="register-submit" tabindex="4" class="form-control btn btn-login">
-                  </div>
-              </form>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" tabindex="1" class="form-control" placeholder="Email Address" value="{{register.email}}">
+                  <label>Password</label>
+                  <input type="password" tabindex="2" class="form-control" placeholder="Password" value="{{register.password}}">
+                  <label>Confirm Password</label>
+                  <input type="password" tabindex="2" class="form-control" placeholder="Confirm Password" value="{{register.confirm}}">
+                </div>
+                <div class="col-xs-6 form-group pull-right">
+                  <button tabindex="4" class="form-control btn" on-click="register">Register</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="panel-heading">
-          <div class="row">
-            <div class="col-xs-6 tabs">
-              <a href="#" class="active" id="login-form-link"><div class="login">LOGIN</div></a>
+          <div class="row tabs">
+            <div class="col-xs-6 tab">
+              <button class="{{loginMode ? 'active' : ''}} btn left" on-click="loginPanel">LOGIN</button>
             </div>
-            <div class="col-xs-6 tabs">
-              <a href="#" id="register-form-link"><div class="register">REGISTER</div></a>
+            <div class="col-xs-6 tab">
+              <button class="{{registerMode ? 'active' : ''}} btn right" on-click="registerPanel">REGISTER</button>
             </div>
           </div>
         </div>
@@ -81,19 +98,9 @@
         </div>
     </div>
 </footer>
+</script>
 </body>
-<!-- Latest compiled and minified JavaScript -->
-<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script src="./js/html.js"></script>
-<script src="./js/registerRouteRequest.js"></script>
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+  <script src="./js/acid.js"></script>
 </html>

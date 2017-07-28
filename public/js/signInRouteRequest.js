@@ -14,7 +14,7 @@ $(document).ready(function() {
     };
     console.log(signIn)
     $.ajax({
-      method: "get",
+      method: "post",
       url: "/login",
       data: signIn,
     })
