@@ -1,0 +1,55 @@
+*{padding:0 margin:0;}
+#wrapper{border:solid gray;
+}
+#header{
+height:120px;
+padding:10px;
+background: -webkit-linear-gradient(left, #22d686, #24d3d3, #22d686, #24d3d3);
+  background: linear-gradient(to right, #22d686, #24d3d3, #22d686, #24d3d3);
+  background-size: 600% 100%;
+          font-size: 84px;
+          text-align: left;
+         font-family: 'Satisfy', cursive;
+         color:gray;
+         
+
+}
+
+
+#navbar{
+	height:50px;
+	background-color: yellow
+	margin-top:10px;
+}
+#container{
+	border:1px solid;
+	margin-top: 10px
+
+}
+#container::after{ content:" "; display:block;clear:both; }
+
+#left-panel{
+height:490px;
+background-color:#2d3b55;
+width:25%;
+float:left;
+font-size: 40px;
+color:gray;
+
+}
+#right-content{
+background-color: white;
+width:73%;
+height:490px;
+float:right;
+background-image: url("https://pbs.twimg.com/media/BiD2mx-CEAAp94S.jpg")
+
+}
+
+#footer{
+	background-color: green;
+}
+.form-group{
+	width:160%;
+	border-color: black;
+}
