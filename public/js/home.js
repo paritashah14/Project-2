@@ -36,9 +36,9 @@
 
       chatDiv.append('<p><strong> @Codi: '+res.result.fulfillment.speech+'</strong></p>');
 
-      if(res.result.action==="createTask") {
-        console.log("add create task post");
-        console.log(res.result.parameters);
+      if(res.result.action==="createTask" && res.result.actionIncomplete=== false) {
+        // console.log("create task post");
+        // console.log(res.result.parameters);
 
         var newTask = {
           text: res.result.parameters.any,
@@ -53,13 +53,56 @@
             data: newTask
           })
           .done(function(res) {
-            console.log("test.js DONE");
+         //   console.log("post  DONE");
+         //   console.log(res);
+             messageInput.val("");
+          //  chatDiv.append('<p><strong>'+res+'</strong></p>');
+          });
+        }
+      else if(res.result.action==="listTasks" ) {
+        // console.log("list task get");
+        // console.log(res.result.parameters);
+
+
+          $.ajax({
+            method: "GET",
+            url: "/api/tasks",
+          })
+          .done(function(res) {
+            console.log("get DONE");
             console.log(res);
              messageInput.val("");
-            chatDiv.append('<p><strong>'+res+'</strong></p>');
-          });
 
-      }
+             if(res.length===0){
+              chatDiv.append('<p><strong>      you have no tasks </strong></p>');
+             }
+             else{
+              for (var i = 0; i < res.length; i++) {
+                chatDiv.append('<p><strong>      ID: ' + res[i].id + ' Task: ' + res[i].text+ ' Due on: '+ res[i].dueDay + '</strong></p>');
+
+              }
+             }
+          //  chatDiv.append('<p><strong>'+res+'</strong></p>');
+          });
+        }
+      else if(res.result.action==="deleteTask" && res.result.actionIncomplete=== false) {
+        // console.log("list task get");
+        // console.log(res.result.parameters);
+
+
+          $.ajax({
+            method: "DELETE",
+            url: "/api/tasks/"+res.result.parameters.any.trim()
+          })
+          .done(function(res) {
+            // console.log("DELETE DONE");
+            // console.log(res);
+          //    messageInput.val("");
+
+          // chatDiv.append('<p><strong>'+res+'</strong></p>');
+          });
+        }
+
     });
 
 
