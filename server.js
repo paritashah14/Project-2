@@ -13,8 +13,8 @@
   app.use(express.static("./public"));
   app.engine('handlebars', exphbs({defaultLayout: 'main'}));
   app.set('view engine', 'handlebars');
-  // require("./controllers/html-routes.js")(app);
-  // require("./controllers/api-routes.js")(app);
+  require("./routes/html-routes.js")(app);
+  require("./routes/api-routes.js")(app);
   await db.sequelize.sync({ force: true });
   app.get(`/`, (req, res) => {
     res.send(`hello`)
