@@ -21,21 +21,46 @@ $(document).ready(function() {
       message: messageInput.val().trim(),
     };
     $("#final_span").text("");
+    messageInput.val("");
 
     console.log(newMessage);
     chatDiv.append('<p>'+newMessage.message+'</p>');
-    // If we're updating a post run updatePost to update a post
-    // Otherwise run submitPost to create a whole new post
+     
     $.ajax({
       method: "PUT",
       url: "/api/codi",
       data: newMessage
     })
     .done(function(res) {
-      console.log("test.js DONE");
-      console.log(res);
-       messageInput.val("");
-      chatDiv.append('<p><strong> @Codi: '+res+'</strong></p>');
+      console.log("home.js .done()");
+     // console.log(res);   
+
+      chatDiv.append('<p><strong> @Codi: '+res.result.fulfillment.speech+'</strong></p>');
+
+      if(res.result.action==="createTask") {
+        console.log("add create task post");
+        console.log(res.result.parameters);
+
+        var newTask = {
+          text: res.result.parameters.any,
+          complete: 0,
+          dueDay: res.result.parameters.date
+        }
+        console.log(newTask)
+
+          $.ajax({
+            method: "POST",
+            url: "/api/tasks",
+            data: newTask
+          })
+          .done(function(res) {
+            console.log("test.js DONE");
+            console.log(res);
+             messageInput.val("");
+            chatDiv.append('<p><strong>'+res+'</strong></p>');
+          });
+      
+      }
     });
 
   

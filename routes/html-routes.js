@@ -17,14 +17,17 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
-  // test route for codi test page
-  app.get("/test", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/test.html"));
-  });
-
- // test route for codi test page
+ // route for home page
   app.get("/home", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
 
+  // test route for codi test page
+  app.get("/test", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/test.html"));
+  });
+    // test route for codi test page
+  app.get("/taskTest", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/taskTest.html"));
+  });
 };
