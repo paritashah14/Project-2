@@ -20,7 +20,7 @@ $(document).ready(function() {
     var newMessage = {
       message: messageInput.val().trim(),
     };
-
+    $("#final_span").text("");
 
     console.log(newMessage);
     chatDiv.append('<p>'+newMessage.message+'</p>');
@@ -35,7 +35,7 @@ $(document).ready(function() {
       console.log("test.js DONE");
       console.log(res);
        messageInput.val("");
-      chatDiv.append('<p><strong>'+res+'</strong></p>');
+      chatDiv.append('<p><strong> @Codi: '+res+'</strong></p>');
     });
 
   
