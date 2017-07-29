@@ -67,7 +67,6 @@
     }
     localStorage.token = JSON.stringify(json.token);
     localStorage.user = JSON.stringify(json.user);
-    await app.set('voiceChat', 'active');
     app.set('user', json.user);
     app.set('token', json.token);
     app.set('loginStatus', true);
@@ -107,6 +106,9 @@
     console.log('Login Panel');
     await app.set('loginMode', true);
     await app.set('registerMode', false);
+  });
+  app.on('codi', async () => {
+    await app.set('voiceChat', true);
   });
   app.on('registerPanel', async () => {
     console.log('Register Panel');

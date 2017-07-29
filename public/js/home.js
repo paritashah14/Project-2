@@ -1,6 +1,5 @@
 // alert("connected");
 
-$(document).ready(function() {
 
   // Getting jQuery references to the post body, title, form, and category select
   // var bodyInput = $("#body");
@@ -66,6 +65,3 @@ $(document).ready(function() {
 
 
   });
-
-
-});

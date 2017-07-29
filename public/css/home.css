@@ -11,7 +11,7 @@ background: -webkit-linear-gradient(left, #22d686, #24d3d3, #22d686, #24d3d3);
           text-align: left;
          font-family: 'Satisfy', cursive;
          color:gray;
-         
+
 
 }
 
@@ -42,7 +42,7 @@ background-color: white;
 width:73%;
 height:490px;
 float:right;
-background-image: url("https://pbs.twimg.com/media/BiD2mx-CEAAp94S.jpg")
+background-color: white;
 
 }
 
@@ -65,7 +65,7 @@ https://www.google.com/intl/en/chrome/demos/speech.html
   }
   .final {
     color: black;
-    padding-right: 3px; 
+    padding-right: 3px;
   }
   .interim {
     color: gray;
@@ -99,13 +99,20 @@ https://www.google.com/intl/en/chrome/demos/speech.html
   #results {
     font-size: 14px;
     font-weight: bold;
-    border: 1px solid #ddd;
-    padding: 15px;
     text-align: left;
-    min-height: 150px;
+    height: 150px;
+    overflow: scroll;
   }
   #start_button {
     border: 0;
     background-color:transparent;
     padding: 0;
+  }
+  .row {
+    height: 150px;
+  }
+  #chat {
+    height: 200px;
+    overflow: scroll;
+    font-size: 20px;
   }

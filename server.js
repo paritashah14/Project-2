@@ -20,7 +20,6 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
 });
-require("./routes/api-routes.js")(app);
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -32,6 +31,7 @@ app.use(bodyParser.json({
 }));
 // Static directory
 app.use(express.static('./public'));
+require("./routes/api-routes.js")(app);
 
 
 // Routes ========================================================
