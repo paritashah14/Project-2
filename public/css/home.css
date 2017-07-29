@@ -1,0 +1,111 @@
+*{padding:0 margin:0;}
+#wrapper{border:solid gray;
+}
+#header{
+height:120px;
+padding:10px;
+background: -webkit-linear-gradient(left, #22d686, #24d3d3, #22d686, #24d3d3);
+  background: linear-gradient(to right, #22d686, #24d3d3, #22d686, #24d3d3);
+  background-size: 600% 100%;
+          font-size: 84px;
+          text-align: left;
+         font-family: 'Satisfy', cursive;
+         color:gray;
+         
+
+}
+
+
+#navbar{
+	height:50px;
+	background-color: yellow
+	margin-top:10px;
+}
+#container{
+	border:1px solid;
+	margin-top: 10px
+
+}
+#container::after{ content:" "; display:block;clear:both; }
+
+#left-panel{
+height:490px;
+background-color:#2d3b55;
+width:25%;
+float:left;
+font-size: 40px;
+color:gray;
+
+}
+#right-content{
+background-color: white;
+width:73%;
+height:490px;
+float:right;
+background-image: url("https://pbs.twimg.com/media/BiD2mx-CEAAp94S.jpg")
+
+}
+
+#footer{
+	background-color: green;
+}
+.form-group{
+	width:160%;
+	border-color: black;
+}
+
+/*
+these styles imported from Google's Web Speech API demo
+https://www.google.com/intl/en/chrome/demos/speech.html
+*/
+
+.center {
+    padding: 10px;
+    text-align: center;
+  }
+  .final {
+    color: black;
+    padding-right: 3px; 
+  }
+  .interim {
+    color: gray;
+  }
+  .info {
+    font-size: 14px;
+    text-align: center;
+    color: #777;
+    display: none;
+  }
+  .right {
+    float: right;
+  }
+  .sidebyside {
+    display: inline-block;
+    width: 45%;
+    min-height: 40px;
+    text-align: left;
+    vertical-align: top;
+  }
+  #headline {
+    font-size: 40px;
+    font-weight: 300;
+  }
+  #info {
+    font-size: 20px;
+    text-align: center;
+    color: #777;
+    visibility: hidden;
+  }
+  #results {
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    min-height: 150px;
+  }
+  #start_button {
+    border: 0;
+    background-color:transparent;
+    padding: 0;
+  }

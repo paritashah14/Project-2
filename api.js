@@ -94,6 +94,15 @@ const api = {
   },
   async register(socket, body, response) {
     if (body.password === body.confirm) {
+      const userCheck = await db.Registration.findOne({
+        where: {
+          email: body.email
+        }
+      });
+      if (userCheck) {
+        response.error = 'User already exists';
+        return;
+      }
       const user = await db.Registration.create({
         email: body.email,
         password: body.password,

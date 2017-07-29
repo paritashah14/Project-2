@@ -36,6 +36,7 @@
       loginMode: false,
       registerMode: true,
       loginStatus: false,
+      voiceChat: false,
       user: {
         email: '',
         password: ''
@@ -66,6 +67,7 @@
     }
     localStorage.token = JSON.stringify(json.token);
     localStorage.user = JSON.stringify(json.user);
+    await app.set('voiceChat', 'active');
     app.set('user', json.user);
     app.set('token', json.token);
     app.set('loginStatus', true);
